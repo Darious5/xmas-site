@@ -9,15 +9,13 @@
 <body>
     <?php
         function mostrar_notificacion(){
-            $switch="false";
-            if (isset($_COOKIE["notificacion_vista"])) $switch="true";
-            return $switch;
+            if (empty($_COOKIE["notificacion_vista"])){
+                echo   "<p>Bienvenido a nuestro sitio web!</p>
+                        <p>Recuerda que el examen de implantacion de aplicaciones web es el 4 de dicciembre</p>";
+                setcookie("notificacion_vista", "true", time() + 86400 * 30, "/");
+            }
         }
-        if (mostrar_notificacion()=="false"){
-            echo   "<p>Bienvenido a nuestro sitio web!</p>
-                    <p>Recuerda que el examen de implantacion de aplicaciones web es el 4 de dicciembre</p>";
-            setcookie("notificacion_vista", "true", time() + 86400 * 30, "/");
-        }
+        mostrar_notificacion();
     ?>
     <h1>Feliz Navidad!</h1>
     <h2>Sobre la Navidad</h2>
